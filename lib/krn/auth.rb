@@ -113,8 +113,6 @@ module Krn
     end
 
     def trinity_url
-      return 'http://localhost:3333'
-      return 'https://hja-trinity.krone.at'
       ENV['KRN_HOST_PREFIX'] ? 'http://' + ENV['KRN_HOST_PREFIX'] + 'trinity.krn.krone.at' : 'https://trinity.krone.at'
     end
   end

@@ -2,7 +2,7 @@ require_relative 'lib/krn/auth/ruby/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "krn-auth-ruby"
-  spec.version       = Krn::Auth::Ruby::VERSION
+  spec.version       = Krn::Auth::VERSION
   spec.authors       = ["Helmut Januschka"]
   spec.email         = ["helmut@januschka.com"]
 

@@ -32,36 +32,13 @@ module Krn
     end
 
     def deep_validate(passport: '')
-      gqlquery = "mutation doRenew($passport: String!) {
-                renew(passport: $passport) {
-                    Message
-                    Renewed
-                    PassPort
-                    Expires
-                    Error
-                    DecodedToken {
-                        Email,
-                        ID,
-                        IntID,
-                        NickName
-                    }
-                }
-            }"
-      query = {
-        operationName: 'doRenew',
-        query: gqlquery,
-        variables: {
-          passport: passport
-        }
-      }
-      uri = URI("#{trinity_url}/graphql")
+      uri = URI("#{trinity_url}/deep-validate?token=#{passport}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
-      req.body = query.to_json
       res = http.request(req)
-      JSON.parse(res.body)['data']['renew']['DecodedToken']
-    rescue StandardError => e
+      JSON.parse(res.body)
+    rescue StandardError
       false
     end
 
